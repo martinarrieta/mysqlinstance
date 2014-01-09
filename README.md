@@ -1,6 +1,9 @@
+# myslqinstance in Go
 
+This is a basic package to handle MySQL instances from go.
 
-my.cnf content:
+## Example of a my.cnf content:
+
 ```
 [mysqld]
 datadir= /Users/martin/gosandbox/test56/data
@@ -15,8 +18,10 @@ user= root
 ```
 
 
-// How to use it
+## How to use it
 
+
+```go
 import "github.com/martinarrieta/mysqlinstance"
 
 m := mysqlinstance.New()
@@ -24,7 +29,8 @@ m := mysqlinstance.New()
 // Set the configuration file to use.
 m.Configfile = "/tmp/my.cnf"
 
-// Initialize the instance
+// Initialize the instance. This option will not create the data or tmp directories,
+// it will return an error if the directories does not exists.
 m.Initialize()
 
 // Start the instance
@@ -37,3 +43,4 @@ if m.Status() {
 
 // Stopping the instance
 m.Stop()
+```
